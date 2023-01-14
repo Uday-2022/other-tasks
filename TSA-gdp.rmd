@@ -18,6 +18,7 @@ This part is for basic time series analysis on Quarterly GDP data **(source:IMF)
 library(scales)
 library(ggplot2)
 library(TSstudio)
+library(plotly)
 
 gdp_data  <- read.csv("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Git_projects/Showcase_projects/showcase_project_website/data/GDP_IMF_India_quarterly_Q22004_Q32022.csv")
 
@@ -43,11 +44,23 @@ ts_plot(ts_gdp_data1,
         Xtitle = "Period",
         Ytitle = "Rs in Million",
         slider = TRUE,
-        color = "Red",
+        color = "blue",
         width = 3,
         line.mode = "lines+markers"
         )
 
 
 ```
+
+Now if we apply linear regression model on the Nominal Unadjusted quarterly GDP then,
+
+```{r ts_lm_model1}
+
+gdp.linear.model1 = lm(ts_gdp_data1 ~ time(ts_gdp_data1))
+
+summary(gdp.linear.model1)
+
+```
+Here, the overall model is statistically significant as the p-value is very small. Both the intercept and slope coefficients are statistically significant but the intercept coefficient does not provide any economic reasoning due to negative value.
+
 
