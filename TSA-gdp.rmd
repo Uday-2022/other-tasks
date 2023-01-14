@@ -38,7 +38,8 @@ options(scipen = 100, digits = 4)
 ts_gdp_data1 <- with(Nominal_gdp_unadjusted_rs, ts(NGDP_NSA_XDC, start = c(Year[1], Quarter[1]), freq = 4))
 
 ts_plot(ts_gdp_data1,
-        title = "India Quarterly Gross Domestic Product (Nominal - Undjusted) at Domestic Currency",
+        title = "India Quarterly Gross Domestic Product (Nominal - Undjusted)
+        at Domestic Currency",
         Xtitle = "Period",
         Ytitle = "Rs in Million",
         slider = TRUE,
