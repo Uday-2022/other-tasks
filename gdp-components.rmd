@@ -77,7 +77,7 @@ df_constant
 
 ```
 
-
+The below table shows the growth rate of GDP and its components for constant market prices.
 
 ```{r growth, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 #colnames(df_constant)
@@ -89,7 +89,7 @@ df_constant_growth <- df_constant%>%
          Government_final_consumption_expenditure_constant_growth_rate = (Government_final_consumption_expenditure_constant -lag(Government_final_consumption_expenditure_constant))/lag(Government_final_consumption_expenditure_constant)*100,
          Net_Exports_constant_growth_rate = (Net_Exports_constant - lag(Net_Exports_constant))/lag(Net_Exports_constant)*100)
 
-print(df_constant_growth)
+df_constant_growth
 ```
 
 
