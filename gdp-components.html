@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Introduction</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My showcase project Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Macroeconomics
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">GDP and It's Components</li>
+    <li>
+      <a href="gdp-components.html"></a>
+    </li>
+    <li class="dropdown-header">Time Series Analysis - GDP</li>
+    <li>
+      <a href="TSA-gdp.html"></a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+
+</div>
+
+
+<div id="macroeconomics-circular-flow-of-income" class="section level2">
+<h2>Macroeconomics Circular Flow of Income</h2>
+<hr />
+<p>International Trade play an important role in circular economy at a
+macroeconomic perspective. It is because of the reason that any activity
+that makes money out of the general circular flow (Household to business
+sector) is known as Leakage like tax, import, savings. On the other
+side, any activity that makes money into the general circular flow
+(Household to business sector) is known as injection like Government
+spending, export, investment.</p>
+<div id="fig-1.-macroeconomics-circular-flow-of-income"
+class="section level4">
+<h4>Fig 1. Macroeconomics Circular Flow of Income</h4>
+<p><img
+src="../../Git_projects/R_projects/R_Projects/Circular%20Economy%20Flow%20Chart.png" /><!-- --></p>
+<p>As you can see all the leakages and injections in the <strong>table
+1</strong> below,</p>
+</div>
+<div id="table-1.-leakages-and-injections" class="section level4">
+<h4>Table 1. Leakages and Injections</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>Leakages</strong></th>
+<th align="center"><strong>Injections</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Imports</td>
+<td align="center">Exports</td>
+</tr>
+<tr class="even">
+<td align="center">Taxes</td>
+<td align="center">Government Spending</td>
+</tr>
+<tr class="odd">
+<td align="center">Savings</td>
+<td align="center">Investment</td>
+</tr>
+</tbody>
+</table>
+<p>They play an important role in the economic growth because if all
+injections are greater than all leakages then the economy grows. On the
+other side, if all of the leakages are greater than the injections then
+the economy declines or shrinks which is the beginning of financial
+crisis.</p>
+<p>The government uses fiscal policy to prevent the economy from over
+and under growth using the fiscal policy instruments, government
+spending (<strong>injection</strong>) and taxes
+(<strong>leakage</strong>). Similarly, the monetary policy through
+monetary policy instrument, interest rate, affect the savings
+(<strong>leakages</strong>) and investment (<strong>injection</strong>).
+The trade policy is used to effect the import
+(<strong>leakages</strong>) and export (<strong>injections</strong>).
+so, we can say that government plays an important role to make a balance
+among these injections and leakages to achieve macroeconomic objectives
+(economic growth, control over inflation and unemployment).</p>
+<p>Here, if government wants to increase taxes to reduce their budget
+deficit then they need to come up with export or investment promotion
+policies.</p>
+<hr />
+</div>
+</div>
+<div id="gdp-and-its-components" class="section level2">
+<h2>GDP and It’s Components</h2>
+<p>GDP and its components are nothing but the part of <strong>Circular
+Flow of Income</strong>.</p>
+<pre><code>##    Year_FY GDP_market_prices_constant
+## 1     1951                   496848.1
+## 2     1952                   511489.4
+## 3     1953                   524919.5
+## 4     1954                   557203.4
+## 5     1955                   584010.8
+## 6     1956                   602911.1
+## 7     1957                   636544.3
+## 8     1958                   633926.7
+## 9     1959                   680775.6
+## 10    1960                   698644.1
+## 11    1961                   737043.6
+## 12    1962                   764481.9
+## 13    1963                   786889.8
+## 14    1964                   834058.8
+## 15    1965                   896220.7
+## 16    1966                   872598.4
+## 17    1967                   872115.6
+## 18    1968                   940367.1
+## 19    1969                   972226.0
+## 20    1970                  1035806.7
+## 21    1971                  1089225.6
+## 22    1972                  1107120.9
+## 23    1973                  1100995.2
+## 24    1974                  1137278.7
+## 25    1975                  1150759.3
+## 26    1976                  1256052.7
+## 27    1977                  1276942.2
+## 28    1978                  1369581.3
+## 29    1979                  1447819.1
+## 30    1980                  1371979.7
+## 31    1981                  1464393.8
+## 32    1982                  1552348.3
+## 33    1983                  1606303.7
+## 34    1984                  1723385.5
+## 35    1985                  1789231.5
+## 36    1986                  1883243.1
+## 37    1987                  1973197.4
+## 38    1988                  2051441.7
+## 39    1989                  2248950.1
+## 40    1990                  2382702.9
+## 41    1991                  2514548.7
+## 42    1992                  2541123.2
+## 43    1993                  2680437.6
+## 44    1994                  2807779.2
+## 45    1995                  2994747.1
+## 46    1996                  3221584.0
+## 47    1997                  3464798.2
+## 48    1998                  3605116.3
+## 49    1999                  3828071.7
+## 50    2000                  4166693.6
+## 51    2001                  4326735.9
+## 52    2002                  4535456.2
+## 53    2003                  4707983.8
+## 54    2004                  5078049.3
+## 55    2005                  5480379.9
+## 56    2006                  5914614.0
+## 57    2007                  6391375.2
+## 58    2008                  6881006.7
+## 59    2009                  7093402.6
+## 60    2010                  7651078.0
+## 61    2011                  8301235.0
+## 62    2012                  8736328.7
+## 63    2013                  9213016.7
+## 64    2014                  9801369.9
+## 65    2015                 10527673.6
+## 66    2016                 11369493.1
+## 67    2017                 12308193.2
+## 68    2018                 13144582.1
+## 69    2019                 13992913.9
+## 70    2020                 14515957.7
+## 71    2021                 13558473.4
+## 72    2022                 14735515.5
+##    Private_final_consumption_expenditure_constant
+## 1                                        412309.1
+## 2                                        438516.6
+## 3                                        456212.0
+## 4                                        483639.2
+## 5                                        499505.1
+## 6                                        504280.6
+## 7                                        526588.6
+## 8                                        516185.5
+## 9                                        563572.6
+## 10                                       569983.0
+## 11                                       602406.1
+## 12                                       612676.1
+## 13                                       620657.7
+## 14                                       643746.4
+## 15                                       682202.5
+## 16                                       682806.4
+## 17                                       691679.9
+## 18                                       730811.3
+## 19                                       750008.5
+## 20                                       777864.8
+## 21                                       804280.8
+## 22                                       819930.2
+## 23                                       825422.8
+## 24                                       845678.8
+## 25                                       845041.1
+## 26                                       893030.2
+## 27                                       910836.9
+## 28                                       985108.9
+## 29                                      1045316.7
+## 30                                      1021870.5
+## 31                                      1113847.9
+## 32                                      1162284.3
+## 33                                      1173908.7
+## 34                                      1265022.9
+## 35                                      1301485.4
+## 36                                      1355803.6
+## 37                                      1398588.2
+## 38                                      1446522.9
+## 39                                      1536811.6
+## 40                                      1613074.0
+## 41                                      1685121.8
+## 42                                      1721474.2
+## 43                                      1765867.6
+## 44                                      1842628.5
+## 45                                      1932182.4
+## 46                                      2049811.5
+## 47                                      2209157.0
+## 48                                      2275203.2
+## 49                                      2423118.4
+## 50                                      2570428.4
+## 51                                      2658840.5
+## 52                                      2817118.6
+## 53                                      2897983.4
+## 54                                      3069698.2
+## 55                                      3228436.1
+## 56                                      3469138.5
+## 57                                      3640367.4
+## 58                                      3905443.1
+## 59                                      4079321.1
+## 60                                      4283318.9
+## 61                                      4571175.0
+## 62                                      4910447.3
+## 63                                      5179090.9
+## 64                                      5557329.1
+## 65                                      5912656.7
+## 66                                      6381418.7
+## 67                                      6900236.0
+## 68                                      7330728.5
+## 69                                      7850443.9
+## 70                                      8259704.3
+## 71                                      7763733.9
+## 72                                      8377853.7
+##    Government_final_consumption_expenditure_constant
+## 1                                           27805.23
+## 2                                           28094.43
+## 3                                           28126.91
+## 4                                           28479.52
+## 5                                           28646.55
+## 6                                           29439.92
+## 7                                           31489.09
+## 8                                           35460.60
+## 9                                           36717.93
+## 10                                          37376.76
+## 11                                          39395.01
+## 12                                          42398.20
+## 13                                          51155.99
+## 14                                          62861.80
+## 15                                          65672.05
+## 16                                          72037.95
+## 17                                          73274.26
+## 18                                          75251.07
+## 19                                          79199.08
+## 20                                          86684.14
+## 21                                          94911.44
+## 22                                         104214.46
+## 23                                         105213.32
+## 24                                         105065.60
+## 25                                         101140.38
+## 26                                         110909.32
+## 27                                         119212.67
+## 28                                         123289.14
+## 29                                         132411.18
+## 30                                         140696.76
+## 31                                         147225.02
+## 32                                         153421.87
+## 33                                         168181.14
+## 34                                         175705.73
+## 35                                         188769.65
+## 36                                         208665.37
+## 37                                         228284.05
+## 38                                         246989.65
+## 39                                         260526.82
+## 40                                         274449.59
+## 41                                         283770.74
+## 42                                         283295.21
+## 43                                         293073.10
+## 44                                         310469.17
+## 45                                         314765.01
+## 46                                         339329.73
+## 47                                         355075.63
+## 48                                         395030.39
+## 49                                         443195.09
+## 50                                         495387.44
+## 51                                         502203.30
+## 52                                         514021.65
+## 53                                         513069.43
+## 54                                         527311.52
+## 55                                         548276.32
+## 56                                         596646.21
+## 57                                         620830.67
+## 58                                         679341.88
+## 59                                         756542.41
+## 60                                         863898.69
+## 61                                         909010.00
+## 62                                         968375.00
+## 63                                         974262.97
+## 64                                         979825.12
+## 65                                        1054150.88
+## 66                                        1132802.50
+## 67                                        1201598.07
+## 68                                        1344842.63
+## 69                                        1434945.20
+## 70                                        1484272.38
+## 71                                        1537603.49
+## 72                                        1577131.79
+##    Gross_fixed_capital_formation_constant Changes_in_stocks_constant
+## 1                                80759.16                   7468.498
+## 2                                78692.09                   7014.071
+## 3                                74365.48                   1857.998
+## 4                                76722.57                  -4231.153
+## 5                                87129.91                   2053.421
+## 6                                97704.48                   2586.772
+## 7                               116847.77                   7900.404
+## 8                               105727.74                  12659.633
+## 9                               105561.69                   -853.154
+## 10                              111299.66                   7953.738
+## 11                              118710.62                  10882.725
+## 12                              134420.93                   9242.563
+## 13                              143252.28                   8006.509
+## 14                              159940.38                   6535.634
+## 15                              172265.82                  11042.877
+## 16                              177802.28                   8337.221
+## 17                              180330.46                  11758.934
+## 18                              191983.95                   9927.973
+## 19                              202242.20                   2548.435
+## 20                              202380.03                  12865.925
+## 21                              191154.69                  15327.565
+## 22                              211029.17                  20343.801
+## 23                              220098.86                   5758.430
+## 24                              214295.22                  20946.756
+## 25                              222538.28                  26395.295
+## 26                              218545.27                   3853.114
+## 27                              242436.45                  13509.389
+## 28                              275224.84                  19996.377
+## 29                              289459.55                  38635.336
+## 30                              289271.48                  27577.589
+## 31                              296163.13                   1782.238
+## 32                              295789.46                  41894.965
+## 33                              312490.58                  31713.124
+## 34                              335400.37                  13289.059
+## 35                              340990.19                  30854.967
+## 36                              356695.87                  48440.228
+## 37                              390688.30                  37655.543
+## 38                              433844.73                  10671.056
+## 39                              448865.96                  42926.372
+## 40                              488046.09                  28521.242
+## 41                              568474.50                  26750.453
+## 42                              524681.32                  -3181.513
+## 43                              580297.56                  32554.891
+## 44                              575503.37                  -6776.507
+## 45                              608646.59                  38234.346
+## 46                              682415.30                  60870.093
+## 47                              714509.67                 -40056.574
+## 48                              779518.79                  30064.440
+## 49                              862295.08                  -9272.664
+## 50                             1006653.59                  93929.082
+## 51                              988594.41                  30759.261
+## 52                             1207965.73                  -6181.617
+## 53                             1199300.34                  35605.522
+## 54                             1260656.59                  38480.503
+## 55                             1405051.85                 142341.311
+## 56                             1636059.68                 180277.473
+## 57                             1863048.42                 237188.266
+## 58                             2167263.71                 311521.501
+## 59                             2236601.84                 151471.429
+## 60                             2408303.08                 254051.060
+## 61                             2674328.00                 367537.000
+## 62                             2997732.87                 207983.188
+## 63                             3145793.19                 201528.391
+## 64                             3194924.31                 129758.395
+## 65                             3278096.10                 274751.211
+## 66                             3492183.06                 239556.842
+## 67                             3787567.62                 122639.334
+## 68                             4083079.09                 206436.266
+## 69                             4540509.24                 262770.794
+## 70                             4611021.48                 108283.554
+## 71                             4131279.07                 -11572.855
+## 72                             4784054.22                 187937.358
+##    Valuables_constant Exports_Goods_and_Services_constant
+## 1                0.00                            31816.38
+## 2                0.00                            35447.60
+## 3                0.00                            31240.53
+## 4                0.00                            27414.18
+## 5                0.00                            33303.46
+## 6                0.00                            36094.57
+## 7                0.00                            32378.71
+## 8                0.00                            32634.78
+## 9                0.00                            28209.53
+## 10               0.00                            29735.13
+## 11               0.00                            29383.71
+## 12               0.00                            29329.09
+## 13               0.00                            29159.03
+## 14               0.00                            31609.58
+## 15               0.00                            29551.15
+## 16               0.00                            25454.12
+## 17               0.00                            32031.56
+## 18               0.00                            33619.09
+## 19               0.00                            34674.07
+## 20               0.00                            34002.08
+## 21               0.00                            44732.40
+## 22               0.00                            45203.00
+## 23               0.00                            48926.76
+## 24               0.00                            51355.22
+## 25               0.00                            55566.24
+## 26               0.00                            64706.24
+## 27               0.00                            77530.27
+## 28               0.00                            74764.49
+## 29               0.00                            80598.38
+## 30               0.00                            89588.48
+## 31               0.00                            94280.52
+## 32               0.00                            93510.31
+## 33               0.00                            99140.11
+## 34               0.00                            98233.06
+## 35               0.00                           105401.96
+## 36               0.00                            98745.92
+## 37               0.00                           104110.18
+## 38               0.00                           117360.57
+## 39               0.00                           126131.00
+## 40               0.00                           141240.40
+## 41               0.00                           156924.32
+## 42               0.00                           172086.80
+## 43               0.00                           180507.43
+## 44               0.00                           205380.62
+## 45               0.00                           232169.78
+## 46               0.00                           305061.97
+## 47               0.00                           324249.55
+## 48               0.00                           316700.45
+## 49               0.00                           360672.16
+## 50           35662.53                           425591.23
+## 51           32759.70                           502850.98
+## 52           30998.28                           524521.47
+## 53           29712.77                           635116.84
+## 54           49501.69                           695975.13
+## 55           77839.70                           885116.19
+## 56           76626.71                          1115999.41
+## 57           87090.89                          1343594.16
+## 58           89612.33                          1422416.64
+## 59          113738.26                          1632623.29
+## 60          179220.73                          1553698.60
+## 61          237367.00                          1856330.00
+## 62          253033.33                          2143931.00
+## 63          259949.28                          2289835.98
+## 64          148879.09                          2468268.92
+## 65          187956.79                          2512144.64
+## 66          185986.41                          2370281.64
+## 67          151478.87                          2488422.58
+## 68          212306.52                          2602011.80
+## 69          191704.43                          2912480.48
+## 70          164526.76                          2813609.38
+## 71          207980.25                          2553682.95
+## 72          295045.89                          3174843.99
+##    Import_Goods_and_Services_constant Discrepancies_constant
+## 1                            33843.26                   0.00
+## 2                            47889.85                   0.00
+## 3                            33773.74                   0.00
+## 4                            30560.94                   0.00
+## 5                            39011.36                   0.00
+## 6                            44049.16                   0.00
+## 7                            54571.01                   0.00
+## 8                            58573.07                   0.00
+## 9                            47694.22                   0.00
+## 10                           42450.57                   0.00
+## 11                           49539.15                   0.00
+## 12                           44706.16                   0.00
+## 13                           46453.82                   0.00
+## 14                           48029.53                   0.00
+## 15                           49652.81                   0.00
+## 16                           44163.09                   0.00
+## 17                           56803.57                   0.00
+## 18                           54563.45                   0.00
+## 19                           46727.61                   0.00
+## 20                           40636.60                   0.00
+## 21                           47916.63                   0.00
+## 22                           56555.27                   0.00
+## 23                           55487.28                   0.00
+## 24                           59967.93                   0.00
+## 25                           52317.17                   0.00
+## 26                           52986.55                   0.00
+## 27                           53991.29                   0.00
+## 28                           68782.53                   0.00
+## 29                           68816.33                   0.00
+## 30                           82112.23                   0.00
+## 31                           93898.78                   0.00
+## 32                          103316.28                   0.00
+## 33                          106885.00                   0.00
+## 34                          130382.79                   0.00
+## 35                          111698.85                   0.00
+## 36                          127192.50                   0.00
+## 37                          148922.03                   0.00
+## 38                          146437.68                   0.00
+## 39                          159901.86                   0.00
+## 40                          163234.80                   0.00
+## 41                          168729.00                   0.00
+## 42                          168754.65                   0.00
+## 43                          204409.26                   0.00
+## 44                          243793.33                   0.00
+## 45                          298894.51                   0.00
+## 46                          382961.22                   0.00
+## 47                          373617.01                   0.00
+## 48                          422937.01                   0.00
+## 49                          511100.74                   0.00
+## 50                          546839.49                   0.00
+## 51                          571937.87                   0.00
+## 52                          588777.15                   0.00
+## 53                          659411.68                   0.00
+## 54                          750963.85                   0.00
+## 55                          917642.03              110960.00
+## 56                         1213761.86               53628.00
+## 57                         1474777.03               74033.00
+## 58                         1621540.75              -73052.00
+## 59                         1985554.37              108659.00
+## 60                         1947316.24               55903.00
+## 61                         2255224.00              -59289.00
+## 62                         2715554.00              -29619.95
+## 63                         2879079.14               41635.06
+## 64                         2644555.08              -33060.00
+## 65                         2667595.26              -24487.44
+## 66                         2511539.77               78803.75
+## 67                         2621592.78              277843.52
+## 68                         3078273.81              443451.16
+## 69                         3349860.57              149920.46
+## 70                         3321585.71              396125.47
+## 71                         2862871.27              238637.90
+## 72                         3878193.30              216841.81
+##    Net_Exports_constant Investment_constant
+## 1            -2026.8836            88227.66
+## 2           -12442.2522            85706.16
+## 3            -2533.2095            76223.48
+## 4            -3146.7580            72491.42
+## 5            -5707.9080            89183.33
+## 6            -7954.5908           100291.25
+## 7           -22192.2969           124748.18
+## 8           -25938.2877           118387.37
+## 9           -19484.6871           104708.54
+## 10          -12715.4330           119253.39
+## 11          -20155.4463           129593.34
+## 12          -15377.0720           143663.49
+## 13          -17294.7914           151258.79
+## 14          -16419.9522           166476.01
+## 15          -20101.6583           183308.70
+## 16          -18708.9641           186139.50
+## 17          -24772.0071           192089.40
+## 18          -20944.3637           201911.92
+## 19          -12053.5386           204790.64
+## 20           -6634.5166           215245.95
+## 21           -3184.2320           206482.26
+## 22          -11352.2727           231372.97
+## 23           -6560.5176           225857.29
+## 24           -8612.7103           235241.97
+## 25            3249.0732           248933.57
+## 26           11719.6965           222398.39
+## 27           23538.9800           255945.84
+## 28            5981.9547           295221.21
+## 29           11782.0479           328094.88
+## 30            7476.2533           316849.07
+## 31             381.7457           297945.37
+## 32           -9805.9671           337684.43
+## 33           -7744.8913           344203.71
+## 34          -32149.7302           348689.43
+## 35           -6296.8926           371845.16
+## 36          -28446.5793           405136.10
+## 37          -44811.8520           428343.84
+## 38          -29077.1136           444515.79
+## 39          -33770.8577           491792.33
+## 40          -21994.4048           516567.33
+## 41          -11804.6744           595224.95
+## 42            3332.1554           521499.80
+## 43          -23901.8324           612852.45
+## 44          -38412.7156           568726.86
+## 45          -66724.7336           646880.93
+## 46          -77899.2470           743285.39
+## 47          -49367.4645           674453.09
+## 48         -106236.5671           809583.23
+## 49         -150428.5793           853022.42
+## 50         -121248.2596          1100582.67
+## 51          -69086.8907          1019353.67
+## 52          -64255.6770          1201784.12
+## 53          -24294.8412          1234905.86
+## 54          -54988.7189          1299137.10
+## 55          -32525.8406          1547393.16
+## 56          -97762.4486          1816337.15
+## 57         -131182.8689          2100236.68
+## 58         -199124.1150          2478785.21
+## 59         -352931.0777          2388073.27
+## 60         -393617.6395          2662354.14
+## 61         -398894.0000          3041865.00
+## 62         -571623.0000          3205716.06
+## 63         -589243.1554          3347321.59
+## 64         -176286.1667          3324682.71
+## 65         -155450.6246          3552847.31
+## 66         -141258.1366          3731739.90
+## 67         -133170.2018          3910206.95
+## 68         -476262.0097          4289515.36
+## 69         -437380.0884          4803280.04
+## 70         -507976.3311          4719305.03
+## 71         -309188.3190          4119706.21
+## 72         -703349.3122          4971991.58</code></pre>
+<pre><code>##    Year_FY GDP_market_prices_constant
+## 1     1951                   496848.1
+## 2     1952                   511489.4
+## 3     1953                   524919.5
+## 4     1954                   557203.4
+## 5     1955                   584010.8
+## 6     1956                   602911.1
+## 7     1957                   636544.3
+## 8     1958                   633926.7
+## 9     1959                   680775.6
+## 10    1960                   698644.1
+## 11    1961                   737043.6
+## 12    1962                   764481.9
+## 13    1963                   786889.8
+## 14    1964                   834058.8
+## 15    1965                   896220.7
+## 16    1966                   872598.4
+## 17    1967                   872115.6
+## 18    1968                   940367.1
+## 19    1969                   972226.0
+## 20    1970                  1035806.7
+## 21    1971                  1089225.6
+## 22    1972                  1107120.9
+## 23    1973                  1100995.2
+## 24    1974                  1137278.7
+## 25    1975                  1150759.3
+## 26    1976                  1256052.7
+## 27    1977                  1276942.2
+## 28    1978                  1369581.3
+## 29    1979                  1447819.1
+## 30    1980                  1371979.7
+## 31    1981                  1464393.8
+## 32    1982                  1552348.3
+## 33    1983                  1606303.7
+## 34    1984                  1723385.5
+## 35    1985                  1789231.5
+## 36    1986                  1883243.1
+## 37    1987                  1973197.4
+## 38    1988                  2051441.7
+## 39    1989                  2248950.1
+## 40    1990                  2382702.9
+## 41    1991                  2514548.7
+## 42    1992                  2541123.2
+## 43    1993                  2680437.6
+## 44    1994                  2807779.2
+## 45    1995                  2994747.1
+## 46    1996                  3221584.0
+## 47    1997                  3464798.2
+## 48    1998                  3605116.3
+## 49    1999                  3828071.7
+## 50    2000                  4166693.6
+## 51    2001                  4326735.9
+## 52    2002                  4535456.2
+## 53    2003                  4707983.8
+## 54    2004                  5078049.3
+## 55    2005                  5480379.9
+## 56    2006                  5914614.0
+## 57    2007                  6391375.2
+## 58    2008                  6881006.7
+## 59    2009                  7093402.6
+## 60    2010                  7651078.0
+## 61    2011                  8301235.0
+## 62    2012                  8736328.7
+## 63    2013                  9213016.7
+## 64    2014                  9801369.9
+## 65    2015                 10527673.6
+## 66    2016                 11369493.1
+## 67    2017                 12308193.2
+## 68    2018                 13144582.1
+## 69    2019                 13992913.9
+## 70    2020                 14515957.7
+## 71    2021                 13558473.4
+## 72    2022                 14735515.5
+##    Private_final_consumption_expenditure_constant
+## 1                                        412309.1
+## 2                                        438516.6
+## 3                                        456212.0
+## 4                                        483639.2
+## 5                                        499505.1
+## 6                                        504280.6
+## 7                                        526588.6
+## 8                                        516185.5
+## 9                                        563572.6
+## 10                                       569983.0
+## 11                                       602406.1
+## 12                                       612676.1
+## 13                                       620657.7
+## 14                                       643746.4
+## 15                                       682202.5
+## 16                                       682806.4
+## 17                                       691679.9
+## 18                                       730811.3
+## 19                                       750008.5
+## 20                                       777864.8
+## 21                                       804280.8
+## 22                                       819930.2
+## 23                                       825422.8
+## 24                                       845678.8
+## 25                                       845041.1
+## 26                                       893030.2
+## 27                                       910836.9
+## 28                                       985108.9
+## 29                                      1045316.7
+## 30                                      1021870.5
+## 31                                      1113847.9
+## 32                                      1162284.3
+## 33                                      1173908.7
+## 34                                      1265022.9
+## 35                                      1301485.4
+## 36                                      1355803.6
+## 37                                      1398588.2
+## 38                                      1446522.9
+## 39                                      1536811.6
+## 40                                      1613074.0
+## 41                                      1685121.8
+## 42                                      1721474.2
+## 43                                      1765867.6
+## 44                                      1842628.5
+## 45                                      1932182.4
+## 46                                      2049811.5
+## 47                                      2209157.0
+## 48                                      2275203.2
+## 49                                      2423118.4
+## 50                                      2570428.4
+## 51                                      2658840.5
+## 52                                      2817118.6
+## 53                                      2897983.4
+## 54                                      3069698.2
+## 55                                      3228436.1
+## 56                                      3469138.5
+## 57                                      3640367.4
+## 58                                      3905443.1
+## 59                                      4079321.1
+## 60                                      4283318.9
+## 61                                      4571175.0
+## 62                                      4910447.3
+## 63                                      5179090.9
+## 64                                      5557329.1
+## 65                                      5912656.7
+## 66                                      6381418.7
+## 67                                      6900236.0
+## 68                                      7330728.5
+## 69                                      7850443.9
+## 70                                      8259704.3
+## 71                                      7763733.9
+## 72                                      8377853.7
+##    Government_final_consumption_expenditure_constant
+## 1                                           27805.23
+## 2                                           28094.43
+## 3                                           28126.91
+## 4                                           28479.52
+## 5                                           28646.55
+## 6                                           29439.92
+## 7                                           31489.09
+## 8                                           35460.60
+## 9                                           36717.93
+## 10                                          37376.76
+## 11                                          39395.01
+## 12                                          42398.20
+## 13                                          51155.99
+## 14                                          62861.80
+## 15                                          65672.05
+## 16                                          72037.95
+## 17                                          73274.26
+## 18                                          75251.07
+## 19                                          79199.08
+## 20                                          86684.14
+## 21                                          94911.44
+## 22                                         104214.46
+## 23                                         105213.32
+## 24                                         105065.60
+## 25                                         101140.38
+## 26                                         110909.32
+## 27                                         119212.67
+## 28                                         123289.14
+## 29                                         132411.18
+## 30                                         140696.76
+## 31                                         147225.02
+## 32                                         153421.87
+## 33                                         168181.14
+## 34                                         175705.73
+## 35                                         188769.65
+## 36                                         208665.37
+## 37                                         228284.05
+## 38                                         246989.65
+## 39                                         260526.82
+## 40                                         274449.59
+## 41                                         283770.74
+## 42                                         283295.21
+## 43                                         293073.10
+## 44                                         310469.17
+## 45                                         314765.01
+## 46                                         339329.73
+## 47                                         355075.63
+## 48                                         395030.39
+## 49                                         443195.09
+## 50                                         495387.44
+## 51                                         502203.30
+## 52                                         514021.65
+## 53                                         513069.43
+## 54                                         527311.52
+## 55                                         548276.32
+## 56                                         596646.21
+## 57                                         620830.67
+## 58                                         679341.88
+## 59                                         756542.41
+## 60                                         863898.69
+## 61                                         909010.00
+## 62                                         968375.00
+## 63                                         974262.97
+## 64                                         979825.12
+## 65                                        1054150.88
+## 66                                        1132802.50
+## 67                                        1201598.07
+## 68                                        1344842.63
+## 69                                        1434945.20
+## 70                                        1484272.38
+## 71                                        1537603.49
+## 72                                        1577131.79
+##    Gross_fixed_capital_formation_constant Changes_in_stocks_constant
+## 1                                80759.16                   7468.498
+## 2                                78692.09                   7014.071
+## 3                                74365.48                   1857.998
+## 4                                76722.57                  -4231.153
+## 5                                87129.91                   2053.421
+## 6                                97704.48                   2586.772
+## 7                               116847.77                   7900.404
+## 8                               105727.74                  12659.633
+## 9                               105561.69                   -853.154
+## 10                              111299.66                   7953.738
+## 11                              118710.62                  10882.725
+## 12                              134420.93                   9242.563
+## 13                              143252.28                   8006.509
+## 14                              159940.38                   6535.634
+## 15                              172265.82                  11042.877
+## 16                              177802.28                   8337.221
+## 17                              180330.46                  11758.934
+## 18                              191983.95                   9927.973
+## 19                              202242.20                   2548.435
+## 20                              202380.03                  12865.925
+## 21                              191154.69                  15327.565
+## 22                              211029.17                  20343.801
+## 23                              220098.86                   5758.430
+## 24                              214295.22                  20946.756
+## 25                              222538.28                  26395.295
+## 26                              218545.27                   3853.114
+## 27                              242436.45                  13509.389
+## 28                              275224.84                  19996.377
+## 29                              289459.55                  38635.336
+## 30                              289271.48                  27577.589
+## 31                              296163.13                   1782.238
+## 32                              295789.46                  41894.965
+## 33                              312490.58                  31713.124
+## 34                              335400.37                  13289.059
+## 35                              340990.19                  30854.967
+## 36                              356695.87                  48440.228
+## 37                              390688.30                  37655.543
+## 38                              433844.73                  10671.056
+## 39                              448865.96                  42926.372
+## 40                              488046.09                  28521.242
+## 41                              568474.50                  26750.453
+## 42                              524681.32                  -3181.513
+## 43                              580297.56                  32554.891
+## 44                              575503.37                  -6776.507
+## 45                              608646.59                  38234.346
+## 46                              682415.30                  60870.093
+## 47                              714509.67                 -40056.574
+## 48                              779518.79                  30064.440
+## 49                              862295.08                  -9272.664
+## 50                             1006653.59                  93929.082
+## 51                              988594.41                  30759.261
+## 52                             1207965.73                  -6181.617
+## 53                             1199300.34                  35605.522
+## 54                             1260656.59                  38480.503
+## 55                             1405051.85                 142341.311
+## 56                             1636059.68                 180277.473
+## 57                             1863048.42                 237188.266
+## 58                             2167263.71                 311521.501
+## 59                             2236601.84                 151471.429
+## 60                             2408303.08                 254051.060
+## 61                             2674328.00                 367537.000
+## 62                             2997732.87                 207983.188
+## 63                             3145793.19                 201528.391
+## 64                             3194924.31                 129758.395
+## 65                             3278096.10                 274751.211
+## 66                             3492183.06                 239556.842
+## 67                             3787567.62                 122639.334
+## 68                             4083079.09                 206436.266
+## 69                             4540509.24                 262770.794
+## 70                             4611021.48                 108283.554
+## 71                             4131279.07                 -11572.855
+## 72                             4784054.22                 187937.358
+##    Valuables_constant Exports_Goods_and_Services_constant
+## 1                0.00                            31816.38
+## 2                0.00                            35447.60
+## 3                0.00                            31240.53
+## 4                0.00                            27414.18
+## 5                0.00                            33303.46
+## 6                0.00                            36094.57
+## 7                0.00                            32378.71
+## 8                0.00                            32634.78
+## 9                0.00                            28209.53
+## 10               0.00                            29735.13
+## 11               0.00                            29383.71
+## 12               0.00                            29329.09
+## 13               0.00                            29159.03
+## 14               0.00                            31609.58
+## 15               0.00                            29551.15
+## 16               0.00                            25454.12
+## 17               0.00                            32031.56
+## 18               0.00                            33619.09
+## 19               0.00                            34674.07
+## 20               0.00                            34002.08
+## 21               0.00                            44732.40
+## 22               0.00                            45203.00
+## 23               0.00                            48926.76
+## 24               0.00                            51355.22
+## 25               0.00                            55566.24
+## 26               0.00                            64706.24
+## 27               0.00                            77530.27
+## 28               0.00                            74764.49
+## 29               0.00                            80598.38
+## 30               0.00                            89588.48
+## 31               0.00                            94280.52
+## 32               0.00                            93510.31
+## 33               0.00                            99140.11
+## 34               0.00                            98233.06
+## 35               0.00                           105401.96
+## 36               0.00                            98745.92
+## 37               0.00                           104110.18
+## 38               0.00                           117360.57
+## 39               0.00                           126131.00
+## 40               0.00                           141240.40
+## 41               0.00                           156924.32
+## 42               0.00                           172086.80
+## 43               0.00                           180507.43
+## 44               0.00                           205380.62
+## 45               0.00                           232169.78
+## 46               0.00                           305061.97
+## 47               0.00                           324249.55
+## 48               0.00                           316700.45
+## 49               0.00                           360672.16
+## 50           35662.53                           425591.23
+## 51           32759.70                           502850.98
+## 52           30998.28                           524521.47
+## 53           29712.77                           635116.84
+## 54           49501.69                           695975.13
+## 55           77839.70                           885116.19
+## 56           76626.71                          1115999.41
+## 57           87090.89                          1343594.16
+## 58           89612.33                          1422416.64
+## 59          113738.26                          1632623.29
+## 60          179220.73                          1553698.60
+## 61          237367.00                          1856330.00
+## 62          253033.33                          2143931.00
+## 63          259949.28                          2289835.98
+## 64          148879.09                          2468268.92
+## 65          187956.79                          2512144.64
+## 66          185986.41                          2370281.64
+## 67          151478.87                          2488422.58
+## 68          212306.52                          2602011.80
+## 69          191704.43                          2912480.48
+## 70          164526.76                          2813609.38
+## 71          207980.25                          2553682.95
+## 72          295045.89                          3174843.99
+##    Import_Goods_and_Services_constant Discrepancies_constant
+## 1                            33843.26                   0.00
+## 2                            47889.85                   0.00
+## 3                            33773.74                   0.00
+## 4                            30560.94                   0.00
+## 5                            39011.36                   0.00
+## 6                            44049.16                   0.00
+## 7                            54571.01                   0.00
+## 8                            58573.07                   0.00
+## 9                            47694.22                   0.00
+## 10                           42450.57                   0.00
+## 11                           49539.15                   0.00
+## 12                           44706.16                   0.00
+## 13                           46453.82                   0.00
+## 14                           48029.53                   0.00
+## 15                           49652.81                   0.00
+## 16                           44163.09                   0.00
+## 17                           56803.57                   0.00
+## 18                           54563.45                   0.00
+## 19                           46727.61                   0.00
+## 20                           40636.60                   0.00
+## 21                           47916.63                   0.00
+## 22                           56555.27                   0.00
+## 23                           55487.28                   0.00
+## 24                           59967.93                   0.00
+## 25                           52317.17                   0.00
+## 26                           52986.55                   0.00
+## 27                           53991.29                   0.00
+## 28                           68782.53                   0.00
+## 29                           68816.33                   0.00
+## 30                           82112.23                   0.00
+## 31                           93898.78                   0.00
+## 32                          103316.28                   0.00
+## 33                          106885.00                   0.00
+## 34                          130382.79                   0.00
+## 35                          111698.85                   0.00
+## 36                          127192.50                   0.00
+## 37                          148922.03                   0.00
+## 38                          146437.68                   0.00
+## 39                          159901.86                   0.00
+## 40                          163234.80                   0.00
+## 41                          168729.00                   0.00
+## 42                          168754.65                   0.00
+## 43                          204409.26                   0.00
+## 44                          243793.33                   0.00
+## 45                          298894.51                   0.00
+## 46                          382961.22                   0.00
+## 47                          373617.01                   0.00
+## 48                          422937.01                   0.00
+## 49                          511100.74                   0.00
+## 50                          546839.49                   0.00
+## 51                          571937.87                   0.00
+## 52                          588777.15                   0.00
+## 53                          659411.68                   0.00
+## 54                          750963.85                   0.00
+## 55                          917642.03              110960.00
+## 56                         1213761.86               53628.00
+## 57                         1474777.03               74033.00
+## 58                         1621540.75              -73052.00
+## 59                         1985554.37              108659.00
+## 60                         1947316.24               55903.00
+## 61                         2255224.00              -59289.00
+## 62                         2715554.00              -29619.95
+## 63                         2879079.14               41635.06
+## 64                         2644555.08              -33060.00
+## 65                         2667595.26              -24487.44
+## 66                         2511539.77               78803.75
+## 67                         2621592.78              277843.52
+## 68                         3078273.81              443451.16
+## 69                         3349860.57              149920.46
+## 70                         3321585.71              396125.47
+## 71                         2862871.27              238637.90
+## 72                         3878193.30              216841.81
+##    Net_Exports_constant Investment_constant
+## 1            -2026.8836            88227.66
+## 2           -12442.2522            85706.16
+## 3            -2533.2095            76223.48
+## 4            -3146.7580            72491.42
+## 5            -5707.9080            89183.33
+## 6            -7954.5908           100291.25
+## 7           -22192.2969           124748.18
+## 8           -25938.2877           118387.37
+## 9           -19484.6871           104708.54
+## 10          -12715.4330           119253.39
+## 11          -20155.4463           129593.34
+## 12          -15377.0720           143663.49
+## 13          -17294.7914           151258.79
+## 14          -16419.9522           166476.01
+## 15          -20101.6583           183308.70
+## 16          -18708.9641           186139.50
+## 17          -24772.0071           192089.40
+## 18          -20944.3637           201911.92
+## 19          -12053.5386           204790.64
+## 20           -6634.5166           215245.95
+## 21           -3184.2320           206482.26
+## 22          -11352.2727           231372.97
+## 23           -6560.5176           225857.29
+## 24           -8612.7103           235241.97
+## 25            3249.0732           248933.57
+## 26           11719.6965           222398.39
+## 27           23538.9800           255945.84
+## 28            5981.9547           295221.21
+## 29           11782.0479           328094.88
+## 30            7476.2533           316849.07
+## 31             381.7457           297945.37
+## 32           -9805.9671           337684.43
+## 33           -7744.8913           344203.71
+## 34          -32149.7302           348689.43
+## 35           -6296.8926           371845.16
+## 36          -28446.5793           405136.10
+## 37          -44811.8520           428343.84
+## 38          -29077.1136           444515.79
+## 39          -33770.8577           491792.33
+## 40          -21994.4048           516567.33
+## 41          -11804.6744           595224.95
+## 42            3332.1554           521499.80
+## 43          -23901.8324           612852.45
+## 44          -38412.7156           568726.86
+## 45          -66724.7336           646880.93
+## 46          -77899.2470           743285.39
+## 47          -49367.4645           674453.09
+## 48         -106236.5671           809583.23
+## 49         -150428.5793           853022.42
+## 50         -121248.2596          1100582.67
+## 51          -69086.8907          1019353.67
+## 52          -64255.6770          1201784.12
+## 53          -24294.8412          1234905.86
+## 54          -54988.7189          1299137.10
+## 55          -32525.8406          1547393.16
+## 56          -97762.4486          1816337.15
+## 57         -131182.8689          2100236.68
+## 58         -199124.1150          2478785.21
+## 59         -352931.0777          2388073.27
+## 60         -393617.6395          2662354.14
+## 61         -398894.0000          3041865.00
+## 62         -571623.0000          3205716.06
+## 63         -589243.1554          3347321.59
+## 64         -176286.1667          3324682.71
+## 65         -155450.6246          3552847.31
+## 66         -141258.1366          3731739.90
+## 67         -133170.2018          3910206.95
+## 68         -476262.0097          4289515.36
+## 69         -437380.0884          4803280.04
+## 70         -507976.3311          4719305.03
+## 71         -309188.3190          4119706.21
+## 72         -703349.3122          4971991.58
+##    GDP_market_prices_constant_growth_rate
+## 1                                      NA
+## 2                              2.94683345
+## 3                              2.62568005
+## 4                              6.15025876
+## 5                              4.81105878
+## 6                              3.23630285
+## 7                              5.57846148
+## 8                             -0.41122304
+## 9                              7.39027285
+## 10                             2.62472785
+## 11                             5.49629374
+## 12                             3.72274253
+## 13                             2.93112774
+## 14                             5.99435326
+## 15                             7.45295012
+## 16                            -2.63577011
+## 17                            -0.05532877
+## 18                             7.82596303
+## 19                             3.38792918
+## 20                             6.53970030
+## 21                             5.15722974
+## 22                             1.64293038
+## 23                            -0.55330131
+## 24                             3.29552114
+## 25                             1.18533626
+## 26                             9.14991201
+## 27                             1.66310364
+## 28                             7.25476459
+## 29                             5.71253209
+## 30                            -5.23818270
+## 31                             6.73582153
+## 32                             6.00620362
+## 33                             3.47573324
+## 34                             7.28889290
+## 35                             3.82073786
+## 36                             5.25429922
+## 37                             4.77656417
+## 38                             3.96535563
+## 39                             9.62778292
+## 40                             5.94734333
+## 41                             5.53345456
+## 42                             1.05683143
+## 43                             5.48239602
+## 44                             4.75077622
+## 45                             6.65892407
+## 46                             7.57449184
+## 47                             7.54952225
+## 48                             4.04982085
+## 49                             6.18441582
+## 50                             8.84575556
+## 51                             3.84099116
+## 52                             4.82396626
+## 53                             3.80397532
+## 54                             7.86038148
+## 55                             7.92293661
+## 56                             7.92343062
+## 57                             8.06073257
+## 58                             7.66081507
+## 59                             3.08669806
+## 60                             7.86188883
+## 61                             8.49758674
+## 62                             5.24131303
+## 63                             5.45638754
+## 64                             6.38610822
+## 65                             7.41022701
+## 66                             7.99625379
+## 67                             8.25630550
+## 68                             6.79538342
+## 69                             6.45385134
+## 70                             3.73791852
+## 71                            -6.59608052
+## 72                             8.68122873
+##    Private_final_consumption_expenditure_constant_growth_rate
+## 1                                                          NA
+## 2                                                  6.35626497
+## 3                                                  4.03529753
+## 4                                                  6.01193068
+## 5                                                  3.28052672
+## 6                                                  0.95603967
+## 7                                                  4.42373295
+## 8                                                 -1.97557038
+## 9                                                  9.18026100
+## 10                                                 1.13744510
+## 11                                                 5.68843598
+## 12                                                 1.70483586
+## 13                                                 1.30274783
+## 14                                                 3.72003854
+## 15                                                 5.97378312
+## 16                                                 0.08852006
+## 17                                                 1.29957030
+## 18                                                 5.65744581
+## 19                                                 2.62683646
+## 20                                                 3.71412150
+## 21                                                 3.39596815
+## 22                                                 1.94576171
+## 23                                                 0.66988405
+## 24                                                 2.45401578
+## 25                                                -0.07540167
+## 26                                                 5.67890381
+## 27                                                 1.99396295
+## 28                                                 8.15426120
+## 29                                                 6.11179448
+## 30                                                -2.24298248
+## 31                                                 9.00088644
+## 32                                                 4.34857159
+## 33                                                 1.00013090
+## 34                                                 7.76160642
+## 35                                                 2.88235911
+## 36                                                 4.17355834
+## 37                                                 3.15565796
+## 38                                                 3.42736522
+## 39                                                 6.24177595
+## 40                                                 4.96238036
+## 41                                                 4.46648780
+## 42                                                 2.15725899
+## 43                                                 2.57879872
+## 44                                                 4.34692546
+## 45                                                 4.86011683
+## 46                                                 6.08788889
+## 47                                                 7.77366130
+## 48                                                 2.98965643
+## 49                                                 6.50118943
+## 50                                                 6.07935342
+## 51                                                 3.43958938
+## 52                                                 5.95289739
+## 53                                                 2.87047856
+## 54                                                 5.92532039
+## 55                                                 5.17112560
+## 56                                                 7.45569539
+## 57                                                 4.93577551
+## 58                                                 7.28156444
+## 59                                                 4.45219736
+## 60                                                 5.00077725
+## 61                                                 6.72039953
+## 62                                                 7.42199264
+## 63                                                 5.47085905
+## 64                                                 7.30317749
+## 65                                                 6.39385556
+## 66                                                 7.92811112
+## 67                                                 8.13012454
+## 68                                                 6.23880806
+## 69                                                 7.08954662
+## 70                                                 5.21321406
+## 71                                                -6.00470023
+## 72                                                 7.91010979
+##    Investment_constant_growth_rate
+## 1                               NA
+## 2                       -2.8579481
+## 3                      -11.0641769
+## 4                       -4.8962049
+## 5                       23.0260532
+## 6                       12.4551473
+## 7                       24.3859029
+## 8                       -5.0989192
+## 9                      -11.5542999
+## 10                      13.8908040
+## 11                       8.6705686
+## 12                      10.8571565
+## 13                       5.2868642
+## 14                      10.0603897
+## 15                      10.1111778
+## 16                       1.5442824
+## 17                       3.1964725
+## 18                       5.1135171
+## 19                       1.4257288
+## 20                       5.1053659
+## 21                      -4.0714782
+## 22                      12.0546509
+## 23                      -2.3838911
+## 24                       4.1551359
+## 25                       5.8202196
+## 26                     -10.6595450
+## 27                      15.0843970
+## 28                      15.3451884
+## 29                      11.1352674
+## 30                      -3.4276110
+## 31                      -5.9661516
+## 32                      13.3376984
+## 33                       1.9305831
+## 34                       1.3032189
+## 35                       6.6407884
+## 36                       8.9529042
+## 37                       5.7283806
+## 38                       3.7754592
+## 39                      10.6355153
+## 40                       5.0376955
+## 41                      15.2269837
+## 42                     -12.3860990
+## 43                      17.5172930
+## 44                      -7.2000349
+## 45                      13.7419346
+## 46                      14.9029680
+## 47                      -9.2605476
+## 48                      20.0355124
+## 49                       5.3656240
+## 50                      29.0215412
+## 51                      -7.3805454
+## 52                      17.8966786
+## 53                       2.7560478
+## 54                       5.2013063
+## 55                      19.1093041
+## 56                      17.3804565
+## 57                      15.6303323
+## 58                      18.0240887
+## 59                      -3.6595319
+## 60                      11.4854459
+## 61                      14.2547101
+## 62                       5.3865329
+## 63                       4.4172823
+## 64                      -0.6763282
+## 65                       6.8627482
+## 66                       5.0351895
+## 67                       4.7824087
+## 68                       9.7004687
+## 69                      11.9772197
+## 70                      -1.7482846
+## 71                     -12.7052354
+## 72                      20.6880133
+##    Government_final_consumption_expenditure_constant_growth_rate
+## 1                                                             NA
+## 2                                                      1.0401023
+## 3                                                      0.1156006
+## 4                                                      1.2536427
+## 5                                                      0.5864784
+## 6                                                      2.7695298
+## 7                                                      6.9604959
+## 8                                                     12.6123471
+## 9                                                      3.5457281
+## 10                                                     1.7942886
+## 11                                                     5.3997570
+## 12                                                     7.6232638
+## 13                                                    20.6560495
+## 14                                                    22.8825774
+## 15                                                     4.4705105
+## 16                                                     9.6934790
+## 17                                                     1.7161842
+## 18                                                     2.6978330
+## 19                                                     5.2464452
+## 20                                                     9.4509362
+## 21                                                     9.4911322
+## 22                                                     9.8017846
+## 23                                                     0.9584680
+## 24                                                    -0.1403976
+## 25                                                    -3.7359694
+## 26                                                     9.6587906
+## 27                                                     7.4866131
+## 28                                                     3.4194911
+## 29                                                     7.3989018
+## 30                                                     6.2574609
+## 31                                                     4.6399520
+## 32                                                     4.2091001
+## 33                                                     9.6200590
+## 34                                                     4.4740983
+## 35                                                     7.4351129
+## 36                                                    10.5396814
+## 37                                                     9.4019776
+## 38                                                     8.1940043
+## 39                                                     5.4808650
+## 40                                                     5.3440839
+## 41                                                     3.3963070
+## 42                                                    -0.1675770
+## 43                                                     3.4514839
+## 44                                                     5.9357451
+## 45                                                     1.3836615
+## 46                                                     7.8041472
+## 47                                                     4.6402925
+## 48                                                    11.2524660
+## 49                                                    12.1926575
+## 50                                                    11.7763822
+## 51                                                     1.3758636
+## 52                                                     2.3533008
+## 53                                                    -0.1852488
+## 54                                                     2.7758585
+## 55                                                     3.9757917
+## 56                                                     8.8221736
+## 57                                                     4.0534002
+## 58                                                     9.4246647
+## 59                                                    11.3640171
+## 60                                                    14.1903855
+## 61                                                     5.2218287
+## 62                                                     6.5307312
+## 63                                                     0.6080258
+## 64                                                     0.5709084
+## 65                                                     7.5856150
+## 66                                                     7.4611348
+## 67                                                     6.0730423
+## 68                                                    11.9211709
+## 69                                                     6.6998593
+## 70                                                     3.4375659
+## 71                                                     3.5930811
+## 72                                                     2.5707728
+##    Net_Exports_constant_growth_rate
+## 1                                NA
+## 2                        513.861214
+## 3                        -79.640265
+## 4                         24.220202
+## 5                         81.390118
+## 6                         39.360879
+## 7                        178.987285
+## 8                         16.879689
+## 9                        -24.880596
+## 10                       -34.741405
+## 11                        58.511679
+## 12                       -23.707609
+## 13                        12.471291
+## 14                        -5.058397
+## 15                        22.422148
+## 16                        -6.928255
+## 17                        32.407155
+## 18                       -15.451487
+## 19                       -42.449727
+## 20                       -44.957934
+## 21                       -52.005065
+## 22                       256.515252
+## 23                       -42.209654
+## 24                        31.280958
+## 25                      -137.724166
+## 26                       260.708910
+## 27                       100.849741
+## 28                       -74.587026
+## 29                        96.959830
+## 30                       -36.545384
+## 31                       -94.893890
+## 32                     -2668.716854
+## 33                       -21.018588
+## 34                       315.108862
+## 35                       -80.413855
+## 36                       351.755825
+## 37                        57.529844
+## 38                       -35.112895
+## 39                        16.142400
+## 40                       -34.871643
+## 41                       -46.328739
+## 42                      -128.227424
+## 43                      -817.308448
+## 44                        60.710338
+## 45                        73.704807
+## 46                        16.747183
+## 47                       -36.626519
+## 48                       115.195510
+## 49                        41.597741
+## 50                       -19.398122
+## 51                       -43.020303
+## 52                        -6.992953
+## 53                       -62.190358
+## 54                       126.339075
+## 55                       -40.849976
+## 56                       200.568554
+## 57                        34.185335
+## 58                        51.791249
+## 59                        77.241756
+## 60                        11.528189
+## 61                         1.340479
+## 62                        43.301980
+## 63                         3.082478
+## 64                       -70.082611
+## 65                       -11.819159
+## 66                        -9.129901
+## 67                        -5.725642
+## 68                       257.634068
+## 69                        -8.163977
+## 70                        16.140708
+## 71                       -39.133322
+## 72                       127.482498</code></pre>
+<p><img src="gdp-components_files/figure-html/graph_1-1.png" width="672" /></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
