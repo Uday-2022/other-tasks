@@ -18,6 +18,7 @@ navbar:
         - href: TSA-gdp.html
 output:
   html_document:
+    df_print: kable
     toc: true
     toc_float: true
     theme: readable
