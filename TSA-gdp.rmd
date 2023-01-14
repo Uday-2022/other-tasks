@@ -1,8 +1,7 @@
 ---
-title: "TSA-gdp"
-author: "Uday Khanna"
-date: "2023-01-14"
-output: html_document
+
+title: "Time Series Analysis-GDP"
+
 ---
 
 ```{r setup, include=FALSE}
