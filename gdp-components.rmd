@@ -68,11 +68,10 @@ df_constant <- import("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Gi
          Exports_Goods_and_Services_constant, Import_Goods_and_Services_constant, Discrepancies_constant)%>%
   mutate(
     Net_Exports_constant = Exports_Goods_and_Services_constant - Import_Goods_and_Services_constant,
-    Investment_constant  = Gross_fixed_capital_formation_constant + Changes_in_stocks_constant)%>%
-  print()
+    Investment_constant  = Gross_fixed_capital_formation_constant + Changes_in_stocks_constant)
 
 #df_constant_2015 <- df_constant[1:65,]
-#print(df_constant_2015)
+df_constant
 #summary(df_constant_2015)
 
 
