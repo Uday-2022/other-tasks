@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r libraries_needed}
 
-pacman::p_load(pacman,party, rio, tidyverse,tinytex, namer )
+pacman::p_load(pacman,party, rio, tidyverse,tinytex, namer, DT )
 
 
 ```
@@ -61,7 +61,7 @@ GDP and its components are nothing but the part of **Circular Flow of Income**.
 #load pre installed package
 #library(tidyverse, rio)
 #pacman::p_load(pacman,party, rio, tidyverse)
-
+options(scipen = 100, digits = 2)
 #import GDP and its components excel file using rio package function import
 df_constant <- import("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Git_projects/RBI_GDP_Componets_Market_Price_yearly.xlsx")%>%
   as.data.frame()%>%
@@ -74,7 +74,11 @@ df_constant <- import("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Gi
     Investment_constant  = Gross_fixed_capital_formation_constant + Changes_in_stocks_constant)
 
 #df_constant_2015 <- df_constant[1:65,]
-df_constant
+df_constant%>%
+  datatable(filter = "top")%>%
+  formatRound(columns=c('GDP_market_prices_constant', 'Private_final_consumption_expenditure_constant', 'Government_final_consumption_expenditure_constant', 'Gross_fixed_capital_formation_constant','Changes_in_stocks_constant','Valuables_constant',
+                        'Exports_Goods_and_Services_constant','Import_Goods_and_Services_constant',
+                        'Discrepancies_constant','Net_Exports_constant','Investment_constant'), digits=2)
 #summary(df_constant_2015)
 
 
@@ -84,7 +88,7 @@ The below table shows the growth rate of GDP and its components for constant mar
 
 ```{r growth, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
 #colnames(df_constant)
-
+options(scipen = 100, digits = 2)
 df_constant_growth <- df_constant%>%
   mutate(GDP_market_prices_constant_growth_rate = (GDP_market_prices_constant - lag(GDP_market_prices_constant))/lag(GDP_market_prices_constant)*100,
          Private_final_consumption_expenditure_constant_growth_rate = (Private_final_consumption_expenditure_constant-lag(Private_final_consumption_expenditure_constant))/lag(Private_final_consumption_expenditure_constant)*100,
