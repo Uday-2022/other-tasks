@@ -12,13 +12,14 @@ knitr::opts_chunk$set(
 
 ## Basic Time Series Analysis
 
-This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. The dataset used here includes
+This part is for basic time series analysis on Quarterly GDP data **(source:RBI)**. The dataset used here includes
 
 ```{r gdp_data1, echo=FALSE, message=FALSE, warning=FALSE}
 library(scales)
 library(ggplot2)
 library(TSstudio)
 library(plotly)
+library(forecast)
 
 gdp_data  <- read.csv("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Git_projects/Showcase_projects/showcase_project_website/data/GDP_IMF_India_quarterly_Q22004_Q32022.csv")
 
@@ -63,4 +64,16 @@ summary(gdp.linear.model1)
 ```
 Here, the overall model is statistically significant as the p-value is very small. Both the intercept and slope coefficients are statistically significant but the intercept coefficient does not provide any economic reasoning due to negative value.
 
+```{r basic_lm_graph}
+options(scipen = 100, digits = 4)
+plot(ts_gdp_data1,
+        main = "India Quarterly Gross Domestic Product (Nominal - Undjusted)
+        at Domestic Currency and Linear Regression Trend",
+        xlab = "Period",
+        ylab = "Rs in Million",
+        col = "blue",
+        cex = 2)
+abline(gdp.linear.model1, col='red')
+
+```
 
