@@ -10,7 +10,8 @@ output:
 knitr::opts_chunk$set(
 	echo = FALSE,
 	message = FALSE,
-	warning = FALSE
+	warning = FALSE,
+	out.width = "80%"
 )
 ```
 
@@ -28,12 +29,14 @@ pacman::p_load(pacman,party, rio, tidyverse,tinytex, namer, DT )
 International Trade play an important role in circular economy at a macroeconomic perspective. It is because of the reason that any activity that makes money out of the general circular flow (Household to business sector) is known as Leakage like tax, import, savings. On the other side, any activity that makes money into the general circular flow (Household to business sector) is known as injection like Government spending, export, investment.
 
 
-#### Fig 1. Macroeconomics Circular Flow of Income
-```{r circular_flow_income_chart, echo=FALSE}
-knitr::include_graphics("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Git_projects/R_projects/R_Projects/Circular Economy Flow Chart.png")
+```{r circular_flow_income_chart, echo=FALSE, message=FALSE, warning=FALSE, out.width="100%", fig.cap="Fig 1. Macroeconomics Circular Flow of Income",fig.align='center'}
+knitr::include_graphics("Circular Economy Flow Chart.png")
 ```
 
-As you can see all the leakages and injections in the **table 1** below,
+
+It shows that Income and Expenditure are equal in the economy as one person's spending is other person's income. The only thing that make a gap between the two are **Injections** and **Leakages**, as shown in **Fig 1**.
+
+As you can see all the leakages and injections in the **Table 1** below,
 
 #### Table 1. Leakages and Injections
 **Leakages** |**Injections** 
@@ -75,7 +78,7 @@ df_constant <- import("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Gi
 
 #df_constant_2015 <- df_constant[1:65,]
 df_constant%>%
-  datatable(filter = "top")%>%
+  datatable(filter = "top", caption = 'GDP and Its Componenets at Constant Market Price')%>%
   formatRound(columns=c('GDP_market_prices_constant', 'Private_final_consumption_expenditure_constant', 'Government_final_consumption_expenditure_constant', 'Gross_fixed_capital_formation_constant','Changes_in_stocks_constant','Valuables_constant',
                         'Exports_Goods_and_Services_constant','Import_Goods_and_Services_constant',
                         'Discrepancies_constant','Net_Exports_constant','Investment_constant'), digits=2)
@@ -127,18 +130,25 @@ lines(df_constant_growth$Year_FY,
 abline(h = 0, col = 'darkblue')
 
 abline(v = c(1958,1966, 1973,1980,2021), col = 'darkred')
-text(1957, -3, "Balance of Payment Crisis - 1958", col = "red3", srt=90)
-text(1965, -2, "BoP Crisis - 1966 (Rupee Devaluation)", col = "red3", srt=90)
-text(1972, -3, "First Oil Crisis - 1973", col = "red3", srt=90)
-text(1979, -2, "Second Oil Shock (Lead to BoP Crisis) - 1980", col = "red3", srt=90)
-text(2020, -3, "COVID 19 Pandemic Crisis - 2021", col = "red3", srt=90)
+text(1955, -2, "Balance of Payment 
+     Crisis - 1958", col = "red3", srt=90)
+text(1963, -2, "BoP Crisis - 1966
+     (Rupee Devaluation)", col = "red3", srt=90)
+text(1970, -1, "First Oil Crisis - 
+     1973", col = "red3", srt=90)
+text(1977, -2, "Second Oil Shock 
+     (Lead to BoP Crisis) - 1980", col = "red3", srt=90)
+text(2018, -1.5, "COVID 19 Pandemic 
+     Crisis - 2021", col = "red3", srt=90)
 
 
 abline(v = c(1992), col = 'black')
-text(1991, -3, "Indian Economic Crisis - 1991-92", col = "red3", srt=90)
+text(1989, -1.5, "Indian Economic Crisis
+     - 1991-92", col = "red3", srt=90)
 
 abline(v = c(2009), col = 'black')
-text(2008, -3, "Global Financial Crisis - 2008-09", col = "red3", srt=90)
+text(2006, -1.5, "Global Financial Crisis 
+     - 2008-09", col = "red3", srt=90)
 
 ```
 
