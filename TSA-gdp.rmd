@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. The dataset used here includes
 
-```{r gdp_data1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r gdp_data1, echo=FALSE, message=FALSE, warning=FALSE, }
 library(scales)
 library(ggplot2)
 library(TSstudio)
@@ -29,7 +29,8 @@ gdp_data  <- read.csv("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Gi
 Nominal_gdp_unadjusted_rs <- gdp_data[,c(1,2,3)]
 
 Nominal_gdp_unadjusted_rs%>%
-  knitr::kable()%>%
+  knitr::kable(caption = "Table 1. Quarterly Gross Domestic Product, Nominal, Undjusted, Domestic Currency 
+               (2nd Quarter 2004 to 3rd Quarter 2022)")%>%
   kable_styling(bootstrap_options = "striped",
                 latex_options = "striped")
 
@@ -80,4 +81,40 @@ plot(ts_gdp_data1,
 abline(gdp.linear.model1, col='red')
 
 ```
+
+One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
+
+```{r residual}
+options(scipen = 100, digits = 4)
+gdp.residuals = resid(gdp.linear.model1)
+
+hist(gdp.residuals, main = "Histogram of Residuals")
+
+```
+
+```{r qqplot}
+options(scipen = 100, digits = 4)
+qqnorm(gdp.residuals, main = "Normal Q-Q plot", col="darkgrey")
+qqline(gdp.residuals,  col="dodgerblue")
+
+```
+
+
+```{r fitted_vs_residuals}
+options(scipen = 100, digits = 4)
+plot(fitted(gdp.linear.model1), resid(gdp.linear.model1), col = "grey", xlab = "Fitted", ylab = "Residuals", main = "Fitted vs Residuals")
+abline(h=0, col="darkorange")
+```
+
+```{r normality_test}
+
+shapiro.test(gdp.residuals)
+
+```
+
+As we can see that the residuals are Non-normally distributed or Skewed distributed both visually and using the test. So, this model can't be used for inferential or predictive purpose.
+
+## Time Series Modeling
+
+
 
