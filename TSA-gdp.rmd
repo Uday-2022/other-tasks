@@ -38,7 +38,7 @@ Nominal_gdp_unadjusted_rs%>%
 
 There are total 74 rows using `nrow()` formula which means 74 quarters equivalent to around 18 years data. Now to apply times series it is important to convert the data in **TS (Time Series)** format 
 
-```{r ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE}
+```{r ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Fig 1. India quarterly GDP data in Domestic Currency"}
 
 options(scipen = 100, digits = 4)
 
@@ -58,6 +58,8 @@ ts_plot(ts_gdp_data1,
 
 ```
 
+**Note:** The variation in data is very high since 2020 (COVID-19 Pandemic starts).
+
 Now if we apply linear regression model on the Nominal Unadjusted quarterly GDP then,
 
 ```{r ts_lm_model1}
@@ -69,7 +71,7 @@ summary(gdp.linear.model1)
 ```
 Here, the overall model is statistically significant as the p-value is very small. Both the intercept and slope coefficients are statistically significant but the intercept coefficient does not provide any economic reasoning due to negative value.
 
-```{r basic_lm_graph}
+```{r basic_lm_graph, fig.cap="Fig 2. India Quarterly GDP data and linear trend", fig.align='center'}
 options(scipen = 100, digits = 4)
 plot(ts_gdp_data1,
         main = "India Quarterly Gross Domestic Product (Nominal - Undjusted)
@@ -84,7 +86,7 @@ abline(gdp.linear.model1, col='red')
 
 One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
 
-```{r residual}
+```{r residual, fig.cap="Fig 3. Histogram of Residuals to Check Normality", fig.align='center'}
 options(scipen = 100, digits = 4)
 gdp.residuals = resid(gdp.linear.model1)
 
@@ -92,7 +94,7 @@ hist(gdp.residuals, main = "Histogram of Residuals")
 
 ```
 
-```{r qqplot}
+```{r qqplot, fig.cap="Fig 4. Q-Q Plot to check Normality", fig.align='center'}
 options(scipen = 100, digits = 4)
 qqnorm(gdp.residuals, main = "Normal Q-Q plot", col="darkgrey")
 qqline(gdp.residuals,  col="dodgerblue")
@@ -100,7 +102,7 @@ qqline(gdp.residuals,  col="dodgerblue")
 ```
 
 
-```{r fitted_vs_residuals}
+```{r fitted_vs_residuals, fig.cap="Fig 5. Residuals vs fitted - Homoscedasticity check"}
 options(scipen = 100, digits = 4)
 plot(fitted(gdp.linear.model1), resid(gdp.linear.model1), col = "grey", xlab = "Fitted", ylab = "Residuals", main = "Fitted vs Residuals")
 abline(h=0, col="darkorange")
@@ -116,5 +118,23 @@ As we can see that the residuals are Non-normally distributed or Skewed distribu
 
 ## Time Series Modeling
 
+As we have seen above that the normal linear regression is not able to predict or make inferences for time series data. The main reason for that is natural correlation from its lag values *(time variables are auto correlated)*.
+
+```{r time_series_modeling_1}
+library(astsa)
+```
+
+**Stationary time series** is an important concept from time series modelling perspective because time series models build on stationary time series data. Here Weak stationary time series is the one with,
+
+**1. No trend** - we want our time series data to be stationary which means we do not want any systematic change in mean like no trend in the data.  
+
+**2. No Change in Variation** - We do not want a systematic change in variation. No Periodic Fluctuations.
+
+In real world we do have the data as Non-stationary time series data like shown in above **Fig 1**. So we do some transformation if our data is non stationary.
 
 
+```{r autocorrelation}
+options(scipen = 100, digits = 4)
+acf(ts_gdp_data1, main = 'Correlogram of GDP')
+
+```
