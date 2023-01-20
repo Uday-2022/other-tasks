@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 ## Basic Time Series Analysis
 
-This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. The dataset used here includes
+This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. It shows quarterly Nominal Gross Domestic Product seasonally Un-adjusted calculated in domestic currency (value in Million) for the period 2nd Quarter 2004 to 3rd Quarter 2022.
 
 ```{r gdp_data1, echo=FALSE, message=FALSE, warning=FALSE, }
 library(scales)
@@ -36,7 +36,7 @@ Nominal_gdp_unadjusted_rs%>%
 
 ```
 
-There are total 74 rows using `nrow()` formula which means 74 quarters equivalent to around 18 years data. Now to apply times series it is important to convert the data in **TS (Time Series)** format 
+There are total 74 rows using `nrow()` formula which means it is equivalent to 74 quarters or  almost 18 years data. Now to apply time series analysis it is important to convert the data in **TS (Time Series)** format. Figure 1 below shows the interactive line chart to see the visual trend in the data, as expected it shows increasing trend with a steep fall due to COVID-19 pandemic.
 
 ```{r ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Fig 1. India quarterly GDP data in Domestic Currency"}
 
@@ -60,7 +60,7 @@ ts_plot(ts_gdp_data1,
 
 **Note:** The variation in data is very high since 2020 (COVID-19 Pandemic starts).
 
-Now if we apply linear regression model on the Nominal Unadjusted quarterly GDP then,
+Now, if we apply linear regression model on the Nominal Un-adjusted quarterly GDP then,
 
 ```{r ts_lm_model1}
 
@@ -84,7 +84,7 @@ abline(gdp.linear.model1, col='red')
 
 ```
 
-One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
+Figure 2 shows the linear trend and actual quarterly India Nominal GDP values. One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
 
 ```{r residual, fig.cap="Fig 3. Histogram of Residuals to Check Normality", fig.align='center'}
 options(scipen = 100, digits = 4)
