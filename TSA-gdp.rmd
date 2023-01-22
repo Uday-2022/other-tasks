@@ -152,7 +152,9 @@ detrend_gdp = diff(ts_gdp_data1)
 plot(detrend_gdp, main = 'Detrend GDP dataset', ylab = 'GDP', xlab = 'Quarter', col = 'blue', lwd = 2)
 
 ```
+
 Correlogram after detrend the data,
+
 ```{r detrended acf}
 options(scipen = 100, digits = 4)
 acf(detrend_gdp, main = 'Correlogram of Detrended GDP')
