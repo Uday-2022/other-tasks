@@ -23,6 +23,8 @@ library(plotly)
 library(forecast)
 library(kableExtra)
 library(DT)
+library(matlib)
+library(dplyr)
 
 gdp_data  <- read.csv("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Git_projects/Showcase_projects/showcase_project_website/data/GDP_IMF_India_quarterly_Q22004_Q32022.csv")
 
@@ -138,3 +140,26 @@ options(scipen = 100, digits = 4)
 acf(ts_gdp_data1, main = 'Correlogram of GDP')
 
 ```
+
+To go further for time series modeling, it is important to make it stationary.
+
+
+```{r detrend_gdp}
+options(scipen = 100, digits = 4)
+
+detrend_gdp = diff(ts_gdp_data1)
+
+plot(detrend_gdp, main = 'Detrend GDP dataset', ylab = 'GDP', xlab = 'Quarter', col = 'blue', lwd = 2)
+
+```
+Correlogram after detrend the data,
+```{r detrended acf}
+options(scipen = 100, digits = 4)
+acf(detrend_gdp, main = 'Correlogram of Detrended GDP')
+
+```
+
+
+
+___
+**WIP on Weekends**
