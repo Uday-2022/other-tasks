@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 ## Basic Time Series Analysis
 
-This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. It shows quarterly Nominal Gross Domestic Product seasonally Un-adjusted calculated in domestic currency (value in Million) for the period 2nd Quarter 2004 to 3rd Quarter 2022.
+This part is for basic time series analysis on Quarterly GDP data **(source:IMF)**. It shows quarterly Real Gross Domestic Product seasonally Un-adjusted calculated in domestic currency (value in Million) for the period 2nd Quarter 2004 to 3rd Quarter 2022.
 
 ```{r gdp_data1, echo=FALSE, message=FALSE, warning=FALSE, }
 library(scales)
@@ -30,8 +30,10 @@ gdp_data  <- read.csv("C:/Users/91981/Desktop/Uday/Personal_analysis_projects/Gi
 
 Nominal_gdp_unadjusted_rs <- gdp_data[,c(1,2,3)]
 
-Nominal_gdp_unadjusted_rs%>%
-  knitr::kable(caption = "Table 1. Quarterly Gross Domestic Product, Nominal, Undjusted, Domestic Currency 
+Real_gdp_unadjusted_rs <- gdp_data[,c(1,2,4)]
+
+Real_gdp_unadjusted_rs%>%
+  knitr::kable(caption = "Table 1. Quarterly Gross Domestic Product, Real, Undjusted, Domestic Currency 
                (2nd Quarter 2004 to 3rd Quarter 2022)")%>%
   kable_styling(bootstrap_options = "striped",
                 latex_options = "striped")
@@ -40,15 +42,15 @@ Nominal_gdp_unadjusted_rs%>%
 
 There are total 74 rows using `nrow()` formula which means it is equivalent to 74 quarters or  almost 18 years data. Now to apply time series analysis it is important to convert the data in **TS (Time Series)** format. Figure 1 below shows the interactive line chart to see the visual trend in the data, as expected it shows increasing trend with a steep fall due to COVID-19 pandemic.
 
-```{r ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Fig 1. India quarterly GDP data in Domestic Currency"}
+```{r ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Fig 1. India quarterly Real GDP in Domestic Currency [Rs in Lakh Crores]"}
 
 options(scipen = 100, digits = 4)
 
-ts_gdp_data1 <- with(Nominal_gdp_unadjusted_rs, ts(NGDP_NSA_XDC, start = c(Year[1], Quarter[1]), freq = 4))
+ts_gdp_data1 <- with(Real_gdp_unadjusted_rs, ts(NGDP_R_NSA_XDC*(1/1000000), start = c(Year[1], Quarter[1]), freq = 4))
 
 ts_plot(ts_gdp_data1,
-        title = "India Quarterly Gross Domestic Product (Nominal - Undjusted)
-        at Domestic Currency",
+        title = "India Quarterly Gross Domestic Product (Real - Undjusted)
+        at Domestic Currency [Rs in Lakh Crores]",
         Xtitle = "Period",
         Ytitle = "Rs in Million",
         slider = TRUE,
@@ -61,6 +63,13 @@ ts_plot(ts_gdp_data1,
 ```
 
 **Note:** The variation in data is very high since 2020 (COVID-19 Pandemic starts).
+
+___
+
+Checked till now
+
+___
+
 
 Now, if we apply linear regression model on the Nominal Un-adjusted quarterly GDP then,
 
