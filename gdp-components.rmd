@@ -157,3 +157,9 @@ text(2006, -1.5, "Global Financial Crisis
 
 ___
 **WIP**
+
+
+
+---
+
+<div class="footer">Copyright &copy; Uday Khanna Doe 2023</div>

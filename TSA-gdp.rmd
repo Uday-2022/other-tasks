@@ -188,3 +188,12 @@ acf(detrend_gdp, main = 'Correlogram of Detrended log of Real GDP')
 
 ___
 **WIP**
+
+
+
+
+
+
+---
+
+<div class="footer">Copyright &copy; Uday Khanna Doe 2023</div>
