@@ -64,45 +64,59 @@ ts_plot(ts_gdp_data1,
 
 **Note:** The variation in data is very high since 2020 (COVID-19 Pandemic starts).
 
-___
+It is best practice to convert it into log form to see the linear trend in the data instead of changing y-axis units.
 
-Checked till now
+```{r log_ts_gdp_data1_plot, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Fig 2. India quarterly Real log GDP"}
 
-___
+options(scipen = 100, digits = 4)
 
+ts_gdp_data2 <- with(Real_gdp_unadjusted_rs, ts(log(NGDP_R_NSA_XDC*1000000), start = c(Year[1], Quarter[1]), freq = 4))
+
+ts_plot(ts_gdp_data2,
+        title = "India Quarterly log of Real GDP",
+        Xtitle = "Period",
+        Ytitle = "Log(Real GDP)",
+        slider = TRUE,
+        color = "green",
+        width = 3,
+        line.mode = "lines+markers"
+        )
+
+
+```
 
 Now, if we apply linear regression model on the Nominal Un-adjusted quarterly GDP then,
 
 ```{r ts_lm_model1}
 
-gdp.linear.model1 = lm(ts_gdp_data1 ~ time(ts_gdp_data1))
+gdp.linear.model1 = lm(ts_gdp_data2 ~ time(ts_gdp_data2))
 
 summary(gdp.linear.model1)
 
 ```
 Here, the overall model is statistically significant as the p-value is very small. Both the intercept and slope coefficients are statistically significant but the intercept coefficient does not provide any economic reasoning due to negative value.
 
-```{r basic_lm_graph, fig.cap="Fig 2. India Quarterly GDP data and linear trend", fig.align='center'}
+```{r basic_lm_graph, fig.cap="Fig 2. Log of India Quarterly Real GDP and linear trend", fig.align='center'}
 options(scipen = 100, digits = 4)
-plot(ts_gdp_data1,
-        main = "India Quarterly Gross Domestic Product (Nominal - Undjusted)
-        at Domestic Currency and Linear Regression Trend",
-        xlab = "Period",
-        ylab = "Rs in Million",
+plot(ts_gdp_data2,
+        main = "Log of India Quarterly Real GDP and 
+     Linear Regression Trend",
+        xlab = "Period (Quarter)",
+        ylab = "Log(Real GDP)",
         col = "blue",
         cex = 2)
 abline(gdp.linear.model1, col='red')
 
 ```
 
-Figure 2 shows the linear trend and actual quarterly India Nominal GDP values. One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
+Figure 2 shows the linear trend and log of quarterly India Real GDP values. One of the important assumption for linear regression is **Residuals Distributed Normally**. It is also to know the residuals are random or not, which is essential for explaining relation in the data.
 
 ```{r residual, fig.cap="Fig 3. Histogram of Residuals to Check Normality", fig.align='center'}
 options(scipen = 100, digits = 4)
 gdp.residuals = resid(gdp.linear.model1)
 
 hist(gdp.residuals, main = "Histogram of Residuals")
-
+lines(density(gdp.residuals))
 ```
 
 ```{r qqplot, fig.cap="Fig 4. Q-Q Plot to check Normality", fig.align='center'}
@@ -146,7 +160,7 @@ In real world we do have the data as Non-stationary time series data like shown 
 
 ```{r autocorrelation}
 options(scipen = 100, digits = 4)
-acf(ts_gdp_data1, main = 'Correlogram of GDP')
+acf(ts_gdp_data2, main = 'Correlogram of Log of Real GDP')
 
 ```
 
@@ -156,9 +170,9 @@ To go further for time series modeling, it is important to make it stationary.
 ```{r detrend_gdp}
 options(scipen = 100, digits = 4)
 
-detrend_gdp = diff(ts_gdp_data1)
+detrend_gdp = diff(ts_gdp_data2)
 
-plot(detrend_gdp, main = 'Detrend GDP dataset', ylab = 'GDP', xlab = 'Quarter', col = 'blue', lwd = 2)
+plot(detrend_gdp, main = 'Detrend log of Real GDP dataset', ylab = 'Log(Real GDP)', xlab = 'Quarter', col = 'blue', lwd = 2)
 
 ```
 
@@ -166,11 +180,11 @@ Correlogram after detrend the data,
 
 ```{r detrended acf}
 options(scipen = 100, digits = 4)
-acf(detrend_gdp, main = 'Correlogram of Detrended GDP')
+acf(detrend_gdp, main = 'Correlogram of Detrended log of Real GDP')
 
 ```
 
 
 
 ___
-**WIP on Weekends**
+**WIP**
