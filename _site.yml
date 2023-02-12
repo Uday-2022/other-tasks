@@ -16,6 +16,8 @@ navbar:
         - href: gdp-components.html
         - text: "Time Series Analysis - GDP"
         - href: TSA-gdp.html
+    - text: "Govt. Budget"
+      href: budget.html
 output:
   html_document:
     toc: true

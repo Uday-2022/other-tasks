@@ -9,7 +9,17 @@ Hello Friends!!!
 
 This is my **Showcase Project Website** where i will play around *Economics*, *Macroeconomics*, *Econometrics*, *Statistics*, *Mathematics*, *Analysis*, *Data Science* and many other topics.
 
-To do so, i will be using R, Rmarkdown, Python, Stata, QGIS and other tools with subject knowledge and industry & Economics knowledge.
+To do so, i will be using R, Rmarkdown, Python, Stata, QGIS and other tools with subject or business knowledge like industry & Economics knowledge.
 
 I hope this will help somehow to the community, industry, and our Country's development.
 
+---
+# Connect with Me
+
+One of the best thing i learn from my job, as very important for knowledge management or development, is building connections or Networking. So, lets come and connect to gain Plethora of knowledge.
+My details are as follows:
+
+**Name - Uday Khanna**<br>
+**Email id - udayKhanna1996@gmail.com**<br>
+**Contact No. - 7678196930**<br>
+**Resume/Basic - [My Resume](file:///C:/Users/91981/Desktop/Uday/Resume_20_jan_23/Uday Khanna - Resume.pdf)**<br>

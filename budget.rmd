@@ -1,0 +1,83 @@
+
+---
+title: "Government Budget Expenditure : 2023-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r library}
+library(ggsankey)
+library(ggplot2)
+library(dplyr)
+library(networkD3)
+library(plotly)
+library(grDevices)
+```
+
+
+```{r data}
+data_nodes <- read.csv("C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Nodes.csv")
+
+data_links <- read.csv("C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Links.csv")
+
+color_palette <- grDevices::colors()
+
+color_palette
+
+```
+
+
+
+```{r sankey_chart, out.width="100%"}
+
+fig <- plot_ly(
+  type = "sankey",
+  domain = list(
+    x = c(0,1),
+    y = c(0,1)
+  ),
+  valuesuffix = "Cr (in Rs)",
+  textposition = "right",
+  orientation = "h",
+  
+  node = list(
+    label = data_nodes$Names,
+    color = data_nodes$Color,
+    pad = 20,
+    thickness = 20,
+    line = list(
+      color = "black",
+      width = 0.5
+    )
+  ),
+  
+  link = list(
+    source = data_links$Source,
+    target = data_links$Target,
+    value = data_links$Value
+  )
+)
+
+fig <- fig%>% layout(
+  title = "Budget Expenditure 2023-24",
+  font = list(
+    size = 10
+  ),
+  xaxis = list(showgrid = F, zeroline = F),
+  yaxis = list(showgrid = F, zeroline = F),
+  autosize = F,
+  width = 1000,
+  hight = 1000
+  )
+
+fig
+#sankeyNetwork(Links = data_links, Nodes = data_nodes, Source = "Source", Target = "Target", Value = "Value", NodeID = "Names", NodeGroup = "Names", fontSize = 16, iterations = 0)
+
+```
+
