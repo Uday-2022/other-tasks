@@ -28,8 +28,6 @@ data_links <- read.csv("C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\L
 
 color_palette <- grDevices::colors()
 
-color_palette
-
 ```
 
 
