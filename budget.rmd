@@ -80,39 +80,38 @@ fig
 
 ```
 
-The below graph is built on python,
-
+Python graph is WIP as some customisation still neeeded...
 ```{python sankey_chart_python}
 #
-import plotly.express as px
-import pandas as pd
-import plotly.graph_objects as go
-
-gov_budget_node = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Nodes.csv')
-
-gov_budget_link = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Links.csv')
-
-fig = go.Figure(data = [go.Sankey(
-    arrangement = "snap", 
-    valuesuffix = "Cr (in Rs)",
-    node = dict(
-        pad = 15,
-        thickness = 20,
-        line = dict(color = "black", width = 0.5),
-        label = gov_budget_node['Names'],
-        x = gov_budget_node['X'],
-        y = gov_budget_node['Y'],
-        color = gov_budget_node['Color']
-    ),
-    link = dict(
-        source = gov_budget_link['Source'],
-        target = gov_budget_link['Target'],
-        value = gov_budget_link['Value']
-    ))])
-
-fig.update_layout(
-    hovermode = 'x',
-    title = "Budget Expenditure 2023-24")
+# import plotly.express as px
+# import pandas as pd
+# import plotly.graph_objects as go
+# 
+# gov_budget_node = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Nodes.csv')
+# 
+# gov_budget_link = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Links.csv')
+# 
+# fig = go.Figure(data = [go.Sankey(
+#     arrangement = "snap", 
+#     valuesuffix = "Cr (in Rs)",
+#     node = dict(
+#         pad = 15,
+#         thickness = 20,
+#         line = dict(color = "black", width = 0.5),
+#         label = gov_budget_node['Names'],
+#         x = gov_budget_node['X'],
+#         y = gov_budget_node['Y'],
+#         color = gov_budget_node['Color']
+#     ),
+#     link = dict(
+#         source = gov_budget_link['Source'],
+#         target = gov_budget_link['Target'],
+#         value = gov_budget_link['Value']
+#     ))])
+# 
+# fig.update_layout(
+#     hovermode = 'x',
+#     title = "Budget Expenditure 2023-24")
 
 
 ```
