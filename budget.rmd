@@ -20,7 +20,7 @@ library(plotly)
 library(grDevices)
 ```
 
-
+The below chart is built in R.
 ```{r data}
 data_nodes <- read.csv("C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Nodes.csv")
 
@@ -30,12 +30,11 @@ color_palette <- grDevices::colors()
 
 ```
 
-
-
 ```{r sankey_chart, out.width="100%"}
 
 fig <- plot_ly(
   type = "sankey",
+  arrangement = "freeform",
   domain = list(
     x = c(0,1),
     y = c(0,1)
@@ -46,8 +45,10 @@ fig <- plot_ly(
   
   node = list(
     label = data_nodes$Names,
+    X = data_nodes$X,
+    Y = data_nodes$Y,
     color = data_nodes$Color,
-    pad = 20,
+    pad = 10,
     thickness = 20,
     line = list(
       color = "black",
@@ -79,3 +80,58 @@ fig
 
 ```
 
+The below graph is built on python,
+
+```{python sankey_chart_python}
+#
+import plotly.express as px
+import pandas as pd
+import plotly.graph_objects as go
+
+gov_budget_node = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Nodes.csv')
+
+gov_budget_link = pd.read_csv('C:\\Users\\91981\\Desktop\\Uday\\Budget 2023 analysis\\Links.csv')
+
+fig = go.Figure(data = [go.Sankey(
+    arrangement = "snap", 
+    valuesuffix = "Cr (in Rs)",
+    node = dict(
+        pad = 15,
+        thickness = 20,
+        line = dict(color = "black", width = 0.5),
+        label = gov_budget_node['Names'],
+        x = gov_budget_node['X'],
+        y = gov_budget_node['Y'],
+        color = gov_budget_node['Color']
+    ),
+    link = dict(
+        source = gov_budget_link['Source'],
+        target = gov_budget_link['Target'],
+        value = gov_budget_link['Value']
+    ))])
+
+fig.update_layout(
+    hovermode = 'x',
+    title = "Budget Expenditure 2023-24")
+
+
+```
+
+
+
+
+
+
+
+
+___
+**WIP**
+As some customisation still left in python graph.
+
+
+
+
+
+---
+
+<div class="footer">Copyright &copy; Uday Khanna Doe 2023</div>
